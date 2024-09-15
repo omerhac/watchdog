@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
 import pandas as pd  # For handling dataframes
+from streamlit.components.v1 import html
 
 ATTENDANCE_FILE = 'attendance.json'
 STUDENTS = ["אבי", "אביב", "אביבה", "אביבי", "אביביה", "יואבית", "זיו"]
@@ -121,12 +122,32 @@ with tab2:
             for date, names in attendance_data.items()
         ])
 
-        # Enhance table appearance
-        st.table(df.style.set_properties(**{
+        # Get the primary color from Streamlit's theme
+        primary_color = st.get_option("theme.primaryColor")
+
+        # Style the DataFrame
+        styled_df = df.style.set_properties(**{
             'text-align': 'right',
             'background-color': '#f9f9f9',
             'padding': '10px',
             'border': '1px solid #ddd'
-        }))
+        }).set_table_styles([
+            {'selector': 'th', 'props': [
+                ('background-color', primary_color),
+                ('color', 'white'),
+                ('font-weight', 'bold'),
+                ('text-align', 'right'),
+                ('padding', '10px')
+            ]}
+        ])
+
+        # Convert styled DataFrame to HTML
+        table_html = styled_df.to_html(index=False)
+
+        # Wrap the table in a div with RTL direction
+        rtl_table_html = f'<div dir="rtl">{table_html}</div>'
+
+        # Display the styled table
+        html(rtl_table_html, height=400, scrolling=True)
     else:
         st.info("אין כרגע רשומות נוכחות.")
