@@ -9,6 +9,8 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import os
 
+assert 'MONGO_USERNAME' in os.environ, "MONGO_USERNAME environment variable is not set"
+assert 'MONGO_PASS' in os.environ, "MONGO_PASS environment variable is not set"
 MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
 MONGO_PASS = os.environ.get('MONGO_PASS')
 MONGO_URI = f'mongodb+srv://{MONGO_USERNAME}:{MONGO_PASS}@pixel-brain.vzvdnha.mongodb.net/?retryWrites=true&w=majority&appName=Pixel-Brain'
