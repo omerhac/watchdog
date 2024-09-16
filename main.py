@@ -9,9 +9,7 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import os
 
-# MongoDB Atlas connection
-assert 'MONGO_URI' in os.environ, "MONGO_URI environment variable is not set"
-MONGO_URI = os.environ.get('MONGO_URI')
+MONGO_URI = 'mongodb+srv://omerhac:omerhac@pixel-brain.vzvdnha.mongodb.net/?retryWrites=true&w=majority&appName=Pixel-Brain'
 COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tsabar')
 client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
 db = client['watchdog']
