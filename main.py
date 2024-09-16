@@ -14,7 +14,7 @@ assert 'MONGO_PASS' in os.environ, "MONGO_PASS environment variable is not set"
 MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
 MONGO_PASS = os.environ.get('MONGO_PASS')
 MONGO_URI = f'mongodb+srv://{MONGO_USERNAME}:{MONGO_PASS}@pixel-brain.vzvdnha.mongodb.net/?retryWrites=true&w=majority&appName=Pixel-Brain'
-COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tsabar')
+COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tichon')
 client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
 db = client['watchdog']
 collection = db[COLLECTION_NAME]
