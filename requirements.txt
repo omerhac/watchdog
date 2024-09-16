@@ -1,2 +1,2 @@
 streamlit
-pymongo
+pymongo[srv]
