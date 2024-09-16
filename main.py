@@ -11,7 +11,7 @@ import os
 # MongoDB Atlas connection
 assert 'MONGO_URI' in os.environ, "MONGO_URI environment variable is not set"
 MONGO_URI = os.environ.get('MONGO_URI')
-COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tichon')
+COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tsabar')
 client = MongoClient(MONGO_URI)
 db = client['watchdog']
 collection = db[COLLECTION_NAME]
