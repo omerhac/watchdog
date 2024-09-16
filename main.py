@@ -9,7 +9,9 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import os
 
-MONGO_URI = 'mongodb+srv://omerhac:omerhac@pixel-brain.vzvdnha.mongodb.net/?retryWrites=true&w=majority&appName=Pixel-Brain'
+MONGO_USERNAME = os.environ.get('MONGO_USERNAME')
+MONGO_PASS = os.environ.get('MONGO_PASS')
+MONGO_URI = f'mongodb+srv://{MONGO_USERNAME}:{MONGO_PASS}@pixel-brain.vzvdnha.mongodb.net/?retryWrites=true&w=majority&appName=Pixel-Brain'
 COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tsabar')
 client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
 db = client['watchdog']
