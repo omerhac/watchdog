@@ -28,7 +28,11 @@ def load_attendance():
     return list(collection.find({}, {'_id': 0}))
 
 def save_attendance(data):
-    collection.insert_one(data)
+    existing_record = collection.find_one({'date': data['date']})
+    if existing_record:
+        collection.update_one({'date': data['date']}, {'$set': {'present': data['present']}})
+    else:
+        collection.insert_one(data)
 
 def check_anomalies(data):
     anomalies = []
