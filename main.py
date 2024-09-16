@@ -6,13 +6,14 @@ from email.mime.text import MIMEText
 import pandas as pd  # For handling dataframes
 from streamlit.components.v1 import html
 from pymongo import MongoClient
+from pymongo.server_api import ServerApi
 import os
 
 # MongoDB Atlas connection
 assert 'MONGO_URI' in os.environ, "MONGO_URI environment variable is not set"
 MONGO_URI = os.environ.get('MONGO_URI')
 COLLECTION_NAME = os.environ.get('COLLECTION_NAME', 'tsabar')
-client = MongoClient(MONGO_URI)
+client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
 db = client['watchdog']
 collection = db[COLLECTION_NAME]
 
